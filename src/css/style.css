@@ -114,6 +114,17 @@ button {
   border-bottom: 2px solid var(--primary-color);
 }
 
+.cart-footer {
+  padding: 1rem 0;
+  text-align: right;
+  font-size: var(--large-font);
+  font-weight: bold;
+}
+
+.hide {
+  display: none;
+}
+
 /* End utility classes */
 
 /* Cart icon styles */
