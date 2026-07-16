@@ -35,6 +35,11 @@ export default class ProductList {
   }
 
   renderList(list) {
+    if (list.length === 0) {
+      this.listElement.innerHTML = "<li>No products found.</li>";
+      return;
+    }
+
     renderListWithTemplate(
       productCardTemplate,
       this.listElement,
