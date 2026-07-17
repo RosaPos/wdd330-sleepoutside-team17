@@ -42,3 +42,33 @@ export function renderListWithTemplate(
   const htmlStrings = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+
+export function renderWithTemplate(template, parentElement, data, callback) {
+  let html = template;
+
+  if (data) {
+    Object.entries(data).forEach(([key, value]) => {
+      html = html.replaceAll(`{{${key}}}`, value);
+    });
+  }
+
+  parentElement.innerHTML = html;
+
+  if (callback) {
+    callback();
+  }
+}
+
+export async function loadTemplate(path) {
+  const response = await fetch(path);
+  return await response.text();
+}
+
+export async function loadHeaderFooter() {
+  const baseURL = import.meta.env.BASE_URL;
+  const header = await loadTemplate(`${baseURL}partials/header.html`);
+  const footer = await loadTemplate(`${baseURL}partials/footer.html`);
+
+  renderWithTemplate(header, qs("#main-header"), { baseURL });
+  renderWithTemplate(footer, qs("#main-footer"));
+}
