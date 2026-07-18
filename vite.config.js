@@ -1,8 +1,10 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
 
+const isRender = process.env.RENDER === "true";
+
 export default defineConfig({
-  base: "/wdd330-sleepoutside-team17/",
+  base: isRender ? "/" : "/wdd330-sleepoutside-team17/",
   root: "src/",
 
   build: {
