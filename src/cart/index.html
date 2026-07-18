@@ -14,11 +14,25 @@
   </head>
 
   <body>
-    <header class="divider">
+    <header class="divider" id="main-header">
       <div class="logo">
         <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
         <a href="/index.html"> Sleep<span class="highlight">Outside</span></a>
       </div>
+
+      <form class="search-form" action="../product_listing/" method="get">
+        <label class="visually-hidden" for="cart-search">
+          Search products
+        </label>
+        <input
+          id="cart-search"
+          type="search"
+          name="search"
+          placeholder="Search products"
+          required
+        />
+        <button type="submit">Search</button>
+      </form>
 
       <div class="cart">
         <a href="../cart/index.html">
@@ -96,6 +110,6 @@
       </section>
     </main>
 
-    <footer>&copy;NOT a real business</footer>
+    <footer id="main-footer">&copy;NOT a real business</footer>
   </body>
 </html>
