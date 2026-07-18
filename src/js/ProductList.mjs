@@ -1,11 +1,11 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
-    return `
+  return `
     <li class="product-card">
-      <a href="product_pages/?product=${product.Id}">
+      <a href="${import.meta.env.BASE_URL}product_pages/?product=${product.Id}">
         <img
-          src="${product.Image}"
+          src="${product.Images.PrimaryMedium}"
           alt="${product.NameWithoutBrand}"
         />
         <h3 class="card__brand">${product.Brand.Name}</h3>
@@ -17,24 +17,30 @@ function productCardTemplate(product) {
 }
 
 export default class ProductList {
-    constructor(category, dataSource, listElement) {
-        this.category = category;
-        this.dataSource = dataSource;
-        this.listElement = listElement;
-    }
+  constructor(category, dataSource, listElement) {
+    this.category = category;
+    this.dataSource = dataSource;
+    this.listElement = listElement;
+  }
 
-    async init() {
-        const list = await this.dataSource.getData();
-        this.renderList(list);
+  async init() {
+    try {
+      const list = await this.dataSource.getData(this.category);
+      this.renderList(list);
+    } catch (error) {
+      this.listElement.innerHTML =
+        "<li>Sorry, the products could not be loaded.</li>";
+      console.error(error);
     }
+  }
 
-    renderList(list) {
-        renderListWithTemplate(
-            productCardTemplate,
-            this.listElement,
-            list,
-            "afterbegin",
-            true,
-        );
-    }
+  renderList(list) {
+    renderListWithTemplate(
+      productCardTemplate,
+      this.listElement,
+      list,
+      "afterbegin",
+      true,
+    );
+  }
 }

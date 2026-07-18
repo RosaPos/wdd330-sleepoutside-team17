@@ -162,6 +162,30 @@ button {
   text-align: center;
 }
 
+.product-categories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 2.5rem 1rem 1rem;
+  text-align: center;
+}
+
+.product-categories a {
+  color: var(--dark-grey);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.product-categories img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
 .products {
   margin-top: 2rem;
   padding: 1rem;
@@ -260,6 +284,10 @@ button {
 
   .mission {
     font-size: 1.2em;
+  }
+
+  .product-categories {
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .cart-card {
