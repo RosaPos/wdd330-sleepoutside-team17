@@ -55,7 +55,7 @@ export function renderWithTemplate(template, parentElement, data, callback) {
   parentElement.innerHTML = html;
 
   if (callback) {
-    callback();
+    callback(data);
   }
 }
 
