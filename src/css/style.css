@@ -112,6 +112,11 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
@@ -312,6 +317,121 @@ button {
   grid-column: 3;
 }
 
+.checkout-button {
+  display: inline-block;
+  padding: 0.65rem 1.25rem;
+  background-color: var(--secondary-color);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main > h1 {
+  padding: 1rem;
+  font-size: 1.6rem;
+}
+
+.checkout-layout {
+  display: grid;
+  gap: 1.5rem;
+  padding: 0 1rem 2rem;
+}
+
+#checkout-form {
+  display: grid;
+  gap: 1rem;
+}
+
+#checkout-form fieldset {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem;
+  border: 1px solid var(--light-grey);
+}
+
+#checkout-form legend {
+  padding: 0 0.35rem;
+  font-size: var(--large-font);
+  font-weight: bold;
+}
+
+#checkout-form input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #777;
+  font: inherit;
+}
+
+#checkout-form input:focus {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 1px;
+}
+
+#checkout-form button {
+  width: 100%;
+}
+
+.order-summary {
+  align-self: start;
+  padding: 1rem;
+  border: 1px solid var(--light-grey);
+}
+
+.order-summary h2 {
+  margin-bottom: 0.75rem;
+}
+
+.order-summary dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.order-summary dd {
+  font-weight: bold;
+}
+
+.order-summary .order-total {
+  font-size: var(--large-font);
+  border-bottom: 0;
+}
+
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #8b1e1e;
+  background-color: #fff2f2;
+  color: #701717;
+}
+
+.alert-close {
+  flex: 0 0 2rem;
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 1rem;
+}
+
+.success-message {
+  min-height: 55vh;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.success-message p {
+  margin-bottom: 1rem;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -339,6 +459,10 @@ button {
     max-width: 360px;
     margin: 0 1rem;
     padding-top: 0;
+  }
+
+  .checkout-layout {
+    grid-template-columns: minmax(0, 2fr) minmax(250px, 1fr);
   }
 }
 

@@ -1,4 +1,4 @@
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 import ProductList from "./ProductList.mjs";
 import { getParam, loadHeaderFooter } from "./utils.mjs";
 
@@ -24,7 +24,7 @@ async function init() {
     document.title = `Sleep Outside | ${categoryName}`;
   }
 
-  const dataSource = new ProductData();
+  const dataSource = new ExternalServices();
   const listElement = document.querySelector(".product-list");
   const productList = new ProductList(searchTerm, dataSource, listElement);
 

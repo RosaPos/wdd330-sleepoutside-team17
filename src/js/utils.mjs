@@ -72,3 +72,26 @@ export async function loadHeaderFooter() {
   renderWithTemplate(header, qs("#main-header"), { baseURL });
   renderWithTemplate(footer, qs("#main-footer"));
 }
+
+export function alertMessage(message, scroll = true) {
+  const oldAlert = document.querySelector(".alert");
+  if (oldAlert) oldAlert.remove();
+
+  const alert = document.createElement("div");
+  const alertText = document.createElement("span");
+  const closeButton = document.createElement("button");
+
+  alert.classList.add("alert");
+  alert.setAttribute("role", "alert");
+  alertText.textContent = message;
+  closeButton.type = "button";
+  closeButton.classList.add("alert-close");
+  closeButton.setAttribute("aria-label", "Close message");
+  closeButton.textContent = "X";
+
+  closeButton.addEventListener("click", () => alert.remove());
+  alert.append(alertText, closeButton);
+  document.querySelector("main").prepend(alert);
+
+  if (scroll) window.scrollTo(0, 0);
+}
