@@ -150,10 +150,41 @@ button {
 
 .cart svg {
   width: 25px;
+  transform-origin: center;
 }
 
 .cart:hover svg {
   fill: gray;
+}
+
+.cart--updated svg {
+  animation: cart-bounce 0.7s ease;
+  fill: var(--tertiary-color);
+}
+
+@keyframes cart-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+
+  25% {
+    transform: translateY(-10px) rotate(-12deg) scale(1.15);
+  }
+
+  50% {
+    transform: translateY(0) rotate(10deg) scale(1.1);
+  }
+
+  75% {
+    transform: translateY(-4px) rotate(-5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cart--updated svg {
+    animation: none;
+  }
 }
 
 /* End cart icon styles */

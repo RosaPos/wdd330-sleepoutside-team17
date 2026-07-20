@@ -1,5 +1,20 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
+function animateCartIcon() {
+  const cart = document.querySelector(".cart");
+  if (!cart) return;
+
+  cart.classList.remove("cart--updated");
+  void cart.offsetWidth;
+  cart.classList.add("cart--updated");
+
+  cart.addEventListener(
+    "animationend",
+    () => cart.classList.remove("cart--updated"),
+    { once: true },
+  );
+}
+
 export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
@@ -20,6 +35,7 @@ export default class ProductDetails {
     const cartItems = getLocalStorage("so-cart") || [];
     cartItems.push(this.product);
     setLocalStorage("so-cart", cartItems);
+    animateCartIcon();
   }
 
   renderProductDetails() {
