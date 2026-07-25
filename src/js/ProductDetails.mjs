@@ -43,17 +43,32 @@ export default class ProductDetails {
     document.querySelector(".product-detail").innerHTML = `
       <h3>${this.product.Brand.Name}</h3>
       <h2 class="divider">${this.product.NameWithoutBrand}</h2>
-      <img
-        class="divider"
-        src="${this.product.Images.PrimaryLarge}"
-        alt="${this.product.NameWithoutBrand}"
-      />
+
+      <picture>
+        <source
+          media="(min-width: 800px)"
+          srcset="${this.product.Images.PrimaryLarge}"
+        />
+        <source
+          media="(min-width: 500px)"
+          srcset="${this.product.Images.PrimaryMedium}"
+        />
+        <img
+          class="divider"
+          src="${this.product.Images.PrimarySmall}"
+          alt="${this.product.NameWithoutBrand}"
+        />
+      </picture>
+
       <p class="product-card__price">$${this.product.FinalPrice}</p>
       <p class="product__color">${this.product.Colors[0].ColorName}</p>
       <p class="product__description">
         ${this.product.DescriptionHtmlSimple}
       </p>
-      <button id="addToCart" data-id="${this.product.Id}">Add to Cart</button>
+
+      <button id="addToCart" data-id="${this.product.Id}">
+        Add to Cart
+      </button>
     `;
   }
 }
