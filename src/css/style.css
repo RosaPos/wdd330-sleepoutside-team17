@@ -501,3 +501,49 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* Checkout submission feedback */
+
+#checkoutSubmit {
+  transition: opacity 0.2s ease;
+}
+
+#checkoutSubmit.is-loading::after {
+  content: "";
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 0.6em;
+  border: 2px solid currentcolor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  vertical-align: -0.1em;
+  animation: checkout-spin 0.75s linear infinite;
+}
+
+.checkout-status {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.checkout-status:empty {
+  display: none;
+}
+
+@keyframes checkout-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #checkoutSubmit {
+    transition: none;
+  }
+
+  #checkoutSubmit.is-loading::after {
+    animation: none;
+  }
+}
+
+/* End checkout submission feedback */
