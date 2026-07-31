@@ -106,8 +106,10 @@ export default class CheckoutProcess {
       await this.services.checkout(order);
       localStorage.removeItem(this.key);
       window.location.href = `${import.meta.env.BASE_URL}checkout/success.html`;
+      return true;
     } catch (error) {
       alertMessage(getErrorMessages(error));
+      return false;
     }
   }
 }
