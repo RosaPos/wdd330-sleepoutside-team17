@@ -73,25 +73,55 @@ export async function loadHeaderFooter() {
   renderWithTemplate(footer, qs("#main-footer"));
 }
 
+// create and display an alert message at the top of main
 export function alertMessage(message, scroll = true) {
+  // remove an existing alert so messages do not accumulate
   const oldAlert = document.querySelector(".alert");
   if (oldAlert) oldAlert.remove();
 
+  // create the main alert container and close button
   const alert = document.createElement("div");
-  const alertText = document.createElement("span");
   const closeButton = document.createElement("button");
 
+  // always work with an array, even when only one message is received
+  const messages = Array.isArray(message) ? message : [message];
+
+  // add styles and accessibility information
   alert.classList.add("alert");
   alert.setAttribute("role", "alert");
-  alertText.textContent = message;
+
+  // configure the close button
   closeButton.type = "button";
   closeButton.classList.add("alert-close");
   closeButton.setAttribute("aria-label", "Close message");
   closeButton.textContent = "X";
 
+  // display one message as plain text
+  if (messages.length === 1) {
+    const alertText = document.createElement("span");
+    alertText.textContent = messages[0];
+    alert.append(alertText);
+  } else {
+    // display multiple messages as a list
+    const alertList = document.createElement("ul");
+    alertList.classList.add("alert-list");
+
+    messages.forEach((item) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = item;
+      alertList.append(listItem);
+    });
+
+    alert.append(alertList);
+  }
+
+  // remove the alert when the close button is clicked
   closeButton.addEventListener("click", () => alert.remove());
-  alert.append(alertText, closeButton);
+
+  // add the close button and insert the alert at the top of main
+  alert.append(closeButton);
   document.querySelector("main").prepend(alert);
 
+  // scroll to the top so the user can see the message
   if (scroll) window.scrollTo(0, 0);
 }

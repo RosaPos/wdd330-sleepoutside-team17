@@ -442,6 +442,15 @@ main > h1 {
   color: #701717;
 }
 
+.alert-list {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.alert-list li + li {
+  margin-top: 0.35rem;
+}
+
 .alert-close {
   flex: 0 0 2rem;
   width: 2rem;

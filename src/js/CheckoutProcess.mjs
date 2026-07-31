@@ -21,17 +21,22 @@ function formDataToJSON(formElement) {
   return convertedJSON;
 }
 
-function getErrorMessage(error) {
+function getErrorMessages(error) {
   if (typeof error.message === "string") {
-    return error.message;
+    return [error.message];
   }
 
-  if (error.message && error.message.message) {
-    const message = error.message.message;
-    return Array.isArray(message) ? message.join(" ") : message;
+  if (error.message && typeof error.message === "object") {
+    const messages = Object.values(error.message).filter(
+      (message) => typeof message === "string",
+    );
+
+    if (messages.length > 0) {
+      return messages;
+    }
   }
 
-  return "We could not place your order. Please check your information.";
+  return ["We could not place your order. Please check your information."];
 }
 
 export default class CheckoutProcess {
@@ -103,7 +108,7 @@ export default class CheckoutProcess {
       window.location.href = `${import.meta.env.BASE_URL}checkout/success.html`;
       return true;
     } catch (error) {
-      alertMessage(getErrorMessage(error));
+      alertMessage(getErrorMessages(error));
       return false;
     }
   }
