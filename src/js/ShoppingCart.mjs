@@ -48,19 +48,19 @@ export default class ShoppingCart {
     );
 
     if (cartItems.length === 0) {
-  this.footerElement.classList.add("hide");
+      this.footerElement.classList.add("hide");
 
-  this.listElement.innerHTML = `
-    <li class="empty-cart" role="status">
-      <h3>Your cart is empty.</h3>
-      <p>Add a product before continuing to checkout.</p>
-      <a class="empty-cart__link" href="${import.meta.env.BASE_URL}">
-        Continue Shopping
-      </a>
-    </li>
-  `;
+      this.listElement.innerHTML = `
+        <li class="empty-cart" role="status">
+          <h3>Your cart is empty.</h3>
+          <p>Add a product before continuing to checkout.</p>
+          <a class="empty-cart__link" href="${import.meta.env.BASE_URL}">
+            Continue Shopping
+          </a>
+        </li>
+      `;
 
-  return;
+    return;
 }
 
     const total = cartItems.reduce(
