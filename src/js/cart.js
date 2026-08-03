@@ -8,6 +8,7 @@ const cart = new ShoppingCart(
   document.querySelector(".product-list"),
   document.querySelector(".cart-footer"),
   document.querySelector(".cart-total"),
+  document.querySelector("#clear-cart"),
 );
 
 cart.init();
