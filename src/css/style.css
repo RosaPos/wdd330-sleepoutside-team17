@@ -275,7 +275,7 @@ button:disabled {
   color: var(--dark-grey);
 }
 
-.product-list .empty-cart__link { 
+.product-list .empty-cart__link {
   display: inline-block;
   padding: 0.65rem 1.25rem;
   background-color: var(--secondary-color);
@@ -289,7 +289,7 @@ button:disabled {
   color: white;
 }
 
-.product-list .empty-cart__link:focus { 
+.product-list .empty-cart__link:focus {
   outline: 3px solid var(--primary-color);
   outline-offset: 3px;
 }
